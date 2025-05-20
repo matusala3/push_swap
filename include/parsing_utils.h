@@ -5,6 +5,8 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "../libft/libft.h"
 
 typedef struct s_node {
 	int             value;
@@ -19,5 +21,10 @@ typedef struct s_stack {
 } t_stack;
 
 bool safe_atoi(const char *str, int *out);
+bool parse_input(char **argv, t_stack *stack_a);
+bool process_argv_entry(char **splitted_arg, t_stack *stack_a);
+bool stack_append(t_stack *stack_a, int val);
+void free_stack(t_stack *stack);
+void free_split_arg(char **split);
 
 #endif

@@ -35,7 +35,6 @@ void free_split_arg(char **split)
     free(split);
 }
 
-//start here
 bool stack_append(t_stack *stack_a, int val)
 {
 	t_node	*node;

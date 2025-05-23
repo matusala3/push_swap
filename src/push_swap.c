@@ -1,11 +1,10 @@
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
 	//t_node	*current;
 	int *linkedlist_copy;
-	int i = 0;
 
 	stack_a.head = NULL;
 	stack_a.tail = NULL;
@@ -18,38 +17,16 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	// current = stack_a.head;
-	// printf("Stack A: \n head -> ");
-	// if (!current)
-	// {
-	// 	printf("(empty)");
-	// }
-	// else
-	// {
-	// 	while (current)
-	// 	{
-	// 		printf("[%d]", current->value);
-	// 		if (current->next)
-	// 			printf("and its next is %d ", current->next->value);
-	// 		else
-	// 			printf("has no next ");
-	// 		if (current->prev)
-	// 			printf("and its prev is %d ", current->prev->value);
-	// 		else
-	// 			printf("has no prev ");
-	// 		current = current->next;
-	// 	}
-	// 	printf(" <- tail");
-	// }
-
-
-	// linkedlist_copy = copy_stack_to_array(stack_a, stack_a.size);
-	// while (stack_a.size > i)
-	// {
-	// 	printf("arr[%d] = %d \n", i, linkedlist_copy[i]);
-	// 	i++;
-	// }
-	// free(linkedlist_copy);
+	linkedlist_copy = copy_stack_to_array(stack_a, stack_a.size);
+	quick_sort(linkedlist_copy, 0, stack_a.size - 1);
+	if(check_duplicates(linkedlist_copy))
+	{
+		write(2, "Error\n", 6);
+		free(linkedlist_copy);
+		free_stack(&stack_a);
+		return (1);
+	}
+	free(linkedlist_copy);
 
 
 	free_stack(&stack_a);
@@ -77,7 +54,14 @@ int	*copy_stack_to_array(t_stack stack_a, int size)
 
 void quick_sort(int *arr, int low, int high)
 {
-
+	if(!arr || low < 0 || high < 0)
+		return;
+	if (low < high)
+	{
+		int pivot = partition(arr, low, high);
+		quick_sort(arr, low, pivot - 1);
+		quick_sort(arr, pivot + 1, high);
+	}
 }
 
 int median_of_three(int *arr, int low, int high)
@@ -100,6 +84,10 @@ void swap(int *a, int *b)
 {
 	int temp;
 
+	if (!a || !b)
+		return;
+	if (a == b)
+		return;
 	temp = *a;
 	*a = *b;
 	*b = temp;
@@ -129,4 +117,19 @@ int partition(int *arr, int low, int high)
 	if(j != high)
 		swap(&arr[j], &arr[high]);
 	return (j);
+}
+
+// check duplicates in sorted array
+bool check_duplicates(int *arr)
+{
+	int i;
+
+	i = 0;
+	while (arr[i + 1])
+	{
+		if (arr[i] == arr[i + 1])
+			return (true);
+		i++;
+	}
+	return (false);
 }

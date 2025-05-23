@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 bool safe_atoi(const char *str, int *out)
 {

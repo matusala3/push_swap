@@ -26,5 +26,11 @@ bool process_argv_entry(char **splitted_arg, t_stack *stack_a);
 bool stack_append(t_stack *stack_a, int val);
 void free_stack(t_stack *stack);
 void free_split_arg(char **split);
+int *copy_stack_to_array(t_stack stack_a, int size);
+void quick_sort(int *arr, int low, int high);
+int partition(int *arr, int low, int high);
+int median_of_three(int *arr, int low, int high);
+void swap(int *a, int *b);
+bool check_duplicates(int *arr);
 
 #endif

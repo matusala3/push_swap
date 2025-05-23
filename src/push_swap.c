@@ -112,18 +112,21 @@ int partition(int *arr, int low, int high)
 	int j;
 
 	median = median_of_three(arr, low, high);
-	swap(&arr[high], &arr[median]);
+	if (high != median)
+		swap(&arr[high], &arr[median]);
 	i = low;
 	j = low;
 	while (i < high)
 	{
 		if(arr[i] < arr[high])
 		{
-			swap(&arr[i], &arr[j]);
+			if (i != j)
+				swap(&arr[i], &arr[j]);
 			j++;
 		}
 		i++;
 	}
-	swap(&arr[j], &arr[high]);
+	if(j != high)
+		swap(&arr[j], &arr[high]);
 	return (j);
 }

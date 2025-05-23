@@ -27,8 +27,6 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	free(linkedlist_copy);
-
-
 	free_stack(&stack_a);
 	return (0);
 }

@@ -1,7 +1,4 @@
-#include "../include/parsing_utils.h"
-#include "../include/push_swap.h"
-
-int	*copy_stack_to_array(t_stack stack_a, int size);
+#include "push_swap.h"
 
 int	main(int argc, char **argv)
 {
@@ -99,14 +96,34 @@ int median_of_three(int *arr, int low, int high)
 		return (high);
 }
 
+void swap(int *a, int *b)
+{
+	int temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
 int partition(int *arr, int low, int high)
 {
-	int pivot_val;
-	int temp;
 	int median;
+	int i;
+	int j;
 
-	pivot_val = arr[median];
-	temp = arr[high];
-	arr[high] = pivot_val;
-	arr[median] = temp;
+	median = median_of_three(arr, low, high);
+	swap(&arr[high], &arr[median]);
+	i = low;
+	j = low;
+	while (i < high)
+	{
+		if(arr[i] < arr[high])
+		{
+			swap(&arr[i], &arr[j]);
+			j++;
+		}
+		i++;
+	}
+	swap(&arr[j], &arr[high]);
+	return (j);
 }

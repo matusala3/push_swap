@@ -20,17 +20,23 @@ typedef struct s_stack {
 	int      size;
 } t_stack;
 
-bool safe_atoi(const char *str, int *out);
-bool parse_input(char **argv, t_stack *stack_a);
-bool process_argv_entry(char **splitted_arg, t_stack *stack_a);
-bool stack_append(t_stack *stack_a, int val);
+//parsing functions
 void free_stack(t_stack *stack);
 void free_split_arg(char **split);
-int *copy_stack_to_array(t_stack stack_a, int size);
+bool safe_atoi(const char *str, int *out);
+bool stack_append(t_stack *stack_a, int val);
+bool parse_input(char **argv, t_stack *stack_a);
+bool process_argv_entry(char **splitted_arg, t_stack *stack_a);
+
+//checking duplication with sorting
 void quick_sort(int *arr, int low, int high);
-int partition(int *arr, int low, int high);
+void insertion_sort(int *arr, int size);
+int	*copy_stack_to_array(t_stack stack_a, int size);
+bool check_duplicates(int *arr);
 int median_of_three(int *arr, int low, int high);
 void swap(int *a, int *b);
-bool check_duplicates(int *arr);
+int partition(int *arr, int low, int high);
+void heapify(int *arr, int size, int root);
+void heap_sort(int *arr, int size);
 
 #endif

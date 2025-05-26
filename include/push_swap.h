@@ -32,7 +32,7 @@ bool process_argv_entry(char **splitted_arg, t_stack *stack_a);
 void quick_sort(int *arr, int low, int high);
 void insertion_sort(int *arr, int size);
 int	*copy_stack_to_array(t_stack stack_a, int size);
-bool check_duplicates(int *arr);
+bool check_duplicates(t_stack *stack_a);
 int median_of_three(int *arr, int low, int high);
 void swap(int *a, int *b);
 int partition(int *arr, int low, int high);

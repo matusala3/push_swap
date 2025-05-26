@@ -84,18 +84,11 @@ bool process_argv_entry(char **splitted_arg, t_stack *stack_a)
 	while(splitted_arg[i])
 	{
 		if (!safe_atoi(splitted_arg[i], &val))
-		{
-			free_split_arg(splitted_arg);
 			return false;
-		}
 		i++;
 		res = stack_append(stack_a, val);
 		if (!res)
-		{
-			free_split_arg(splitted_arg);
-			free_stack(stack_a);
 			return false;
-		}
 	}
 	return (true);
 }
@@ -114,7 +107,6 @@ bool parse_input(char **argv, t_stack *stack_a)
 		free_split_arg(splitted_arg);
 		if (!res)
 		{
-			free_split_arg(splitted_arg);
 			free_stack(stack_a);
 			return false;
 		}

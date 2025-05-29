@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:29 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/29 21:55:41 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/29 22:32:29 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,20 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	sort_strategy(stack_a, stack_b);
+	sort_strategy(&stack_a, &stack_b);
 	free_stack(&stack_a);
+	free_stack(&stack_b);
 	return (0);
 }
 
-void sort_strategy(t_stack stack_a, t_stack stack_b)
+void sort_strategy(t_stack *stack_a, t_stack *stack_b)
 {
-	
+	if (is_sorted(stack_a))
+		return ;
+	if (stack_a->size <= 5)
+		small_sort(stack_a, stack_b);
+	else if (stack_a->size <= 500)
+		mechanical_turk(stack_a, stack_b);
+	else
+		radix_sort(stack_a, stack_b);
 }

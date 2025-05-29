@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/28 14:31:15 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/29 15:45:06 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_stack {
 	t_node  *tail;
 	int      size;
 } t_stack;
+
 
 //parsing functions
 void free_stack(t_stack *stack);

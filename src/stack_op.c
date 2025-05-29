@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:23 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/29 14:30:02 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:05:42 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,15 @@ void	rotate(t_stack *stack)
 	stack->tail = current;
 }
 
-void revers_rotate(t_stack *stack)
+void	reverse_rotate(t_stack *stack)
 {
 	t_node	*current;
 
 	if (stack->size < 2)
-    return ;
+		return ;
 	current = stack->tail;
 	stack->tail = stack->tail->prev;
 	stack->tail->next = NULL;
-
 	current->prev = NULL;
 	current->next = stack->head;
 	stack->head->prev = current;

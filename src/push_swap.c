@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/28 14:31:29 by magebreh          #+#    #+#             */
+/*   Updated: 2025/05/28 17:55:45 by magebreh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/push_swap.h"
 
 int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
+	t_stack	stack_b;
 
-	stack_a = (t_stack) {NULL, NULL, 0};
+	stack_a = (t_stack){NULL, NULL, 0};
+	stack_b = (t_stack){NULL, NULL, 0};
 	if (argc == 1)
 		return (0);
 	if (!parse_input(argv, &stack_a))
@@ -13,7 +27,7 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	if(check_duplicates(&stack_a))
+	if (check_duplicates(&stack_a))
 	{
 		free_stack(&stack_a);
 		write(2, "Error\n", 6);

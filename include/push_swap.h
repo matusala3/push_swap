@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
+/*   Updated: 2025/05/28 14:31:15 by magebreh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
@@ -38,5 +50,8 @@ void swap(int *a, int *b);
 int partition(int *arr, int low, int high);
 void heapify(int *arr, int size, int root);
 void heap_sort(int *arr, int size);
+
+//operations
+void swap_nodes(t_stack *stack_a, t_stack *stack_b);
 
 #endif

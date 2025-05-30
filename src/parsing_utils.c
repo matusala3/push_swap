@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:32 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/30 13:35:36 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:36:32 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,3 @@ bool	process_argv_entry(char **splitted_arg, t_stack *stack_a)
 	}
 	return (true);
 }
-
-

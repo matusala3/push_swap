@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 01:48:07 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/30 01:50:41 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:36:48 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 // void mechanical_turk(t_stack *a, t_stack *b)
 // {
-    
+
 // }

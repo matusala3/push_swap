@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:29 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/30 15:23:22 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/30 21:18:25 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (1);
 	}
+	printf("\n\n");
 	printf("before sorting: ");
 	print_stack(&stack_a);
 	printf("\n");

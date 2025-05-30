@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:29 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/30 01:50:52 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:23:22 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,38 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (1);
 	}
+	printf("before sorting: ");
+	print_stack(&stack_a);
+	printf("\n");
 	sort_strategy(&stack_a, &stack_b);
+	printf("after sorting: ");
+	print_stack(&stack_a);
+	printf("\n");
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);
+}
+
+bool	parse_input(char **argv, t_stack *stack_a)
+{
+	int		i;
+	bool	res;
+	char	**splitted_arg;
+
+	i = 1;
+	while (argv[i])
+	{
+		splitted_arg = ft_split(argv[i], ' ');
+		res = process_argv_entry(splitted_arg, stack_a);
+		free_split_arg(splitted_arg);
+		if (!res)
+		{
+			free_stack(stack_a);
+			return (false);
+		}
+		i++;
+	}
+	return (true);
 }
 
 void sort_strategy(t_stack *stack_a, t_stack *stack_b)
@@ -65,4 +93,22 @@ bool is_sorted(t_stack *stack)
 		current = current->next;
 	}
 	return true;
+}
+
+void print_stack(t_stack *stack)
+{
+	int size;
+	t_node *current;
+
+	size = stack->size;
+	current = stack->head;
+	if(!size)
+		return ;
+	while (size)
+	{
+		printf("%d", current->value);
+		current = current->next;
+		size--;
+	}
+	
 }

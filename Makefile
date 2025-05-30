@@ -6,7 +6,7 @@
 #    By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 01:14:35 by magebreh          #+#    #+#              #
-#    Updated: 2025/05/30 01:53:21 by magebreh         ###   ########.fr        #
+#    Updated: 2025/05/30 13:27:23 by magebreh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,4 +47,5 @@ fclean: clean
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
+
 .PHONY: all clean fclean re

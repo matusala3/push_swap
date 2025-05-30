@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:32 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/28 18:03:54 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/30 13:35:36 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,24 +112,4 @@ bool	process_argv_entry(char **splitted_arg, t_stack *stack_a)
 	return (true);
 }
 
-bool	parse_input(char **argv, t_stack *stack_a)
-{
-	int		i;
-	bool	res;
-	char	**splitted_arg;
 
-	i = 1;
-	while (argv[i])
-	{
-		splitted_arg = ft_split(argv[i], ' ');
-		res = process_argv_entry(splitted_arg, stack_a);
-		free_split_arg(splitted_arg);
-		if (!res)
-		{
-			free_stack(stack_a);
-			return (false);
-		}
-		i++;
-	}
-	return (true);
-}

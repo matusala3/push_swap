@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:47 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/28 18:11:39 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/30 13:24:36 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,6 @@ bool	check_duplicates(t_stack *stack_a)
 		insertion_sort(linkedlist_copy, size);
 	else
 		heap_sort(linkedlist_copy, size);
-	for(int i = 0; i < size; i++)
-	{
-		printf("%d ", linkedlist_copy[i]);
-	}
 	while (size > 1)
 	{
 		if (linkedlist_copy[size - 1] == linkedlist_copy[size - 2])

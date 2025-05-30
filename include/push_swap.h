@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/30 01:47:43 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/30 15:22:31 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,8 @@ bool is_sorted(t_stack *stack);
 void sort_strategy(t_stack *stack_a, t_stack *stack_b);
 void	small_sort(t_stack *a, t_stack *b);
 
+
+
+//addition remove after use
+void print_stack(t_stack *stack);
 #endif

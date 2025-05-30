@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/29 15:45:06 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/30 01:47:43 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,20 @@ void heapify(int *arr, int size, int root);
 void heap_sort(int *arr, int size);
 
 //operations
-void swap_nodes(t_stack *stack_a, t_stack *stack_b);
+void	swap_stack(t_stack *stack);
+void	rotate(t_stack *stack);
+void	reverse_rotate(t_stack *stack);
+void	pusha_to_b(t_stack *stack_a, t_stack *stack_b);
+void	pushb_to_a(t_stack *stack_a, t_stack *stack_b);
+int	execute_instruction(t_stack *a, t_stack *b, char *op);
+void	swap_both(t_stack *a, t_stack *b);
+void	rotate_both(t_stack *a, t_stack *b);
+void	reverse_rotate_both(t_stack *a, t_stack *b);
+int	ft_strcmp(char *s1, char *s2);
+
+//sorts
+bool is_sorted(t_stack *stack);
+void sort_strategy(t_stack *stack_a, t_stack *stack_b);
+void	small_sort(t_stack *a, t_stack *b);
 
 #endif

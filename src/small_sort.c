@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 22:03:10 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/30 22:04:35 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:36:16 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,52 +47,48 @@ void	sort_three(t_stack *a, t_stack *b)
 		execute_instruction(a, b, "rra");
 }
 
- void	sort_four_five(t_stack *a, t_stack *b)
+void	find_min(t_stack *a, int *min_val, int *min_index)
 {
-	int		pushes;
 	t_node	*current;
-	int		min_val;
 	int		pos;
-	int		min_index;
-	int		rotation;
+
+	current = a->head;
+	*min_val = current->value;
+	pos = 0;
+	*min_index = 0;
+	while (current)
+	{
+		if (current->value < *min_val)
+		{
+			*min_val = current->value;
+			*min_index = pos;
+		}
+		current = current->next;
+		pos++;
+	}
+}
+
+void	sort_four_five(t_stack *a, t_stack *b)
+{
+	int	pushes;
+	int	min_val;
+	int	min_index;
+	int	rotation;
 
 	pushes = a->size - 3;
-	while (pushes)
+	while (pushes--)
 	{
-		current = a->head;
-		min_val = current->value;
-		pos = 0;
-		min_index = 0;
-		while (current)
-		{
-			if (current->value < min_val)
-			{
-				min_val = current->value;
-				min_index = pos;
-			}
-			current = current->next;
-			pos++;
-		}
-		if (min_index <= pos / 2)
-		{
-			while (min_index)
-			{
+		find_min(a, &min_val, &min_index);
+		if (min_index <= a->size / 2)
+			while (min_index--)
 				execute_instruction(a, b, "ra");
-				min_index--;
-			}
-			execute_instruction(a, b, "pb");
-		}
-		else 
+		else
 		{
-			rotation = pos-min_index;
-			while (rotation)
-			{
+			rotation = a->size - min_index;
+			while (rotation--)
 				execute_instruction(a, b, "rra");
-				rotation--;
-			}
-			execute_instruction(a, b, "pb");
 		}
-		pushes--;
+		execute_instruction(a, b, "pb");
 	}
 	sort_three(a, b);
 	while (b->size > 0)

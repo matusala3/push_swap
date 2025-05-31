@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/30 15:22:31 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/05/31 17:05:20 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@ typedef struct s_stack {
 	t_node  *tail;
 	int      size;
 } t_stack;
+
+typedef struct s_cost{
+	int total_cost;
+	int index_stack_a;
+	int index_Stack_b;
+	int cost_top_a;
+	int cost_top_b;
+	char *dir_a;
+	char *dir_b;
+} t_cost;
 
 
 //parsing functions

@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/31 17:05:20 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/02 23:36:01 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_stack {
 typedef struct s_cost{
 	int total_cost;
 	int index_stack_a;
-	int index_Stack_b;
+	int index_stack_b;
 	int cost_top_a;
 	int cost_top_b;
 	char *dir_a;
@@ -78,8 +78,13 @@ int	ft_strcmp(char *s1, char *s2);
 bool is_sorted(t_stack *stack);
 void sort_strategy(t_stack *stack_a, t_stack *stack_b);
 void	small_sort(t_stack *a, t_stack *b);
-
-
+void	sort_two(t_stack *a, t_stack *b);
+void	sort_three(t_stack *a, t_stack *b);
+void	sort_four_five(t_stack *a, t_stack *b);
+void mechanical_turk(t_stack *a, t_stack *b);
+bool find_insert_pos_b(t_stack *b, t_node *node, t_cost *cost);
+void perform_optimal_move(t_stack *a, t_stack *b, t_cost *cost);
+void push_back_b_to_a(t_stack *a, t_stack *b);
 
 //addition remove after use
 void print_stack(t_stack *stack);

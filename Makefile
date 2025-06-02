@@ -6,11 +6,11 @@
 #    By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 01:14:35 by magebreh          #+#    #+#              #
-#    Updated: 2025/05/30 13:27:23 by magebreh         ###   ########.fr        #
+#    Updated: 2025/05/30 23:59:08 by magebreh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME = push_swap.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinclude
 AR = ar rcs
@@ -36,12 +36,12 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	$(AR) $(NAME) $(OBJ)
 
 clean:
 	$(RM) $(OBJ)
 	$(MAKE) -C $(LIBFT_DIR) clean
-
+	
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean

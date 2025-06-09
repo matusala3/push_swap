@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:19 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/30 21:50:21 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/09 10:39:10 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	execute_instruction(t_stack *a, t_stack *b, char *op)
 		reverse_rotate(b);
 	else if (!ft_strcmp(op, "rrr"))
 		reverse_rotate_both(a, b);
-	if (write(1, op, ft_strlen(op)) && write(1, "\n", 1))
-		return (-1);
+	//if (write(1, op, ft_strlen(op)) && write(1, "\n", 1))
+	//	return (-1);
 	return (0);
 }
 

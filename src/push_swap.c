@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:29 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/31 13:37:01 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/09 14:12:20 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,8 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	printf("\n\n");
-	printf("before sorting: ");
-	print_stack(&stack_a);
-	printf("\n");
 	sort_strategy(&stack_a, &stack_b);
-	printf("after sorting: ");
+	printf("stack a: ");
 	print_stack(&stack_a);
 	printf("\n");
 	free_stack(&stack_a);
@@ -74,8 +70,8 @@ void sort_strategy(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	if (stack_a->size <= 5)
 		small_sort(stack_a, stack_b);
-	// else if (stack_a->size <= 500)
-	// 	mechanical_turk(stack_a, stack_b);
+	 else if (stack_a->size <= 500)
+	 	mechanical_turk(stack_a, stack_b);
 	// else
 	// 	radix_sort(stack_a, stack_b);
 }
@@ -107,7 +103,7 @@ void print_stack(t_stack *stack)
 		return ;
 	while (size)
 	{
-		printf("%d", current->value);
+		printf("%d ", current->value);
 		current = current->next;
 		size--;
 	}

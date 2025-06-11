@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:29 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/09 14:12:20 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/11 17:07:47 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	sort_strategy(&stack_a, &stack_b);
-	printf("stack a: ");
-	print_stack(&stack_a);
-	printf("\n");
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);

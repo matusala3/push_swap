@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/09 12:46:06 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/11 16:39:54 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "../libft/libft.h"
 
 typedef struct s_node {
@@ -32,15 +33,21 @@ typedef struct s_stack {
 	int      size;
 } t_stack;
 
-typedef struct s_cost{
-	int total_cost;
-	int index_stack_a;
-	int index_stack_b;
-	int cost_top_a;
-	int cost_top_b;
-	char *dir_a;
-	char *dir_b;
+typedef struct s_cost {
+	t_node *target_node;      // Node in A to push
+	int     index_stack_a;    // Position in A
+	int     index_stack_b;    // Insertion position in B
+
+	int     cost_top_a;       // Number of ops for A (ra/rra)
+	int     cost_top_b;       // Number of ops for B (rb/rrb)
+
+	char   *dir_a;            // "ra" or "rra"
+	char   *dir_b;            // "rb" or "rrb"
+
+	int     total_cost;       // Max(cost_top_a, cost_top_b) for aligned case
+	int     case_id;          // 1 = case_one (ra + rb), 2 = case_two (rra + rrb)
 } t_cost;
+
 
 
 //parsing functions
@@ -78,13 +85,19 @@ int	ft_strcmp(char *s1, char *s2);
 bool is_sorted(t_stack *stack);
 void sort_strategy(t_stack *stack_a, t_stack *stack_b);
 void	small_sort(t_stack *a, t_stack *b);
-void	sort_two(t_stack *a, t_stack *b);
+void	sort_two_a(t_stack *a, t_stack *b);
+void	sort_two_b(t_stack *a, t_stack *b);
 void	sort_three(t_stack *a, t_stack *b);
 void	sort_four_five(t_stack *a, t_stack *b);
 void mechanical_turk(t_stack *a, t_stack *b);
-bool find_insert_pos_b(t_stack *b, t_node *node, t_cost *cost);
-void perform_optimal_move(t_stack *a, t_stack *b, t_cost *cost);
-void push_back_b_to_a(t_stack *a, t_stack *b);
+void set_case_one_cost(t_cost *c, int a_cost, int b_cost);
+void set_case_two_cost(t_cost *c, int rra_cost, int rrb_cost);
+void calculate_cost_ab(t_stack *a, t_stack *b, t_node *node, t_cost *c);
+int get_index_of_max(t_stack *b);
+int find_place_in_b(t_stack *b, int value);
+int get_node_index(t_stack *stack, t_node *target);
+void seed_stack_b(t_stack *a, t_stack *b);
+int find_place_in_a(t_stack *a, int value);
 
 //addition remove after use
 void print_stack(t_stack *stack);

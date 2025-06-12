@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 01:48:07 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/11 18:23:17 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/12 16:09:45 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,33 +26,67 @@ t_node *get_node_at(t_stack *stack, int index)
     return current;
 }
 
-void set_case_one_cost(t_cost *c, int a_cost, int b_cost)
+
+void set_case_two_cost(t_cost *c, int rra, int rrb)
 {
-   c->cost_top_a = a_cost;
-   c->cost_top_b = b_cost;
-   c->dir_a = "ra";
-   c->dir_b = "rb";
-   if (a_cost > b_cost)
-       c->total_cost = a_cost;
-   else
-       c->total_cost = b_cost;
-   c->case_id = 1;
+    c->dir_a = "rra";
+    c->dir_b = "rrb";
+    c->combo_op = "rrr";
+    c->cost_top_a = rra;
+    c->cost_top_b = rrb;
+    
+    if (rra > rrb)
+        c->total_cost = rra;
+    else
+        c->total_cost = rrb;
+    
+    c->case_id = 2;
 }
 
-void set_case_two_cost(t_cost *c, int rra_cost, int rrb_cost)
+void set_case_one_cost(t_cost *c, int ra, int rb)
 {
-   c->cost_top_a = rra_cost;
-   c->cost_top_b = rrb_cost;
-   c->dir_a = "rra";
-   c->dir_b = "rrb";
-   if (rra_cost > rrb_cost)
-       c->total_cost = rra_cost;
-   else
-       c->total_cost = rrb_cost;
-   c->case_id = 2;
+    c->dir_a = "ra";
+    c->dir_b = "rb";
+    c->combo_op = "rr";
+    c->cost_top_a = ra;
+    c->cost_top_b = rb;
+    
+    if (ra > rb)
+        c->total_cost = ra;
+    else
+        c->total_cost = rb;
+    
+    c->case_id = 1;
 }
 
-void calculate_cost_ab(t_stack *a, t_stack *b, t_node *node, t_cost *c)
+void set_case_swap_cost(t_cost *c, int swap_a, int swap_b)
+{
+    if (swap_a && swap_b)
+    {
+        c->dir_a = NULL;
+        c->dir_b = NULL;
+        c->combo_op = "ss";
+    }
+    else if (swap_a)
+    {
+        c->dir_a = "sa";
+        c->dir_b = NULL;
+        c->combo_op = NULL;
+    }
+    else if (swap_b)
+    {
+        c->dir_a = NULL;
+        c->dir_b = "sb";
+        c->combo_op = NULL;
+    }
+
+    c->cost_top_a = swap_a ? 1 : 0;
+    c->cost_top_b = swap_b ? 1 : 0;
+    c->total_cost = 1;
+    c->case_id = 3;
+}
+
+void calculate_cost_ab(t_stack *a, t_stack *b, t_node *node, t_cost *c) 
 {
     int ra;
     int rb;
@@ -60,23 +94,42 @@ void calculate_cost_ab(t_stack *a, t_stack *b, t_node *node, t_cost *c)
     int rrb;
     int cost_case_one;
     int cost_case_two;
-
+    int cost_swap;
+    int swap_a;
+    int swap_b;
+    
+    cost_swap = INT_MAX;
+    
     c->target_node = node;
     c->index_stack_a = get_node_index(a, node);
     c->index_stack_b = find_place_in_b(b, node->value);
+    
     ra = c->index_stack_a;
     rb = c->index_stack_b;
     rra = a->size - ra;
     rrb = b->size - rb;
-    if (ra > rb) 
-        cost_case_one =  ra;
+    if (ra > rb)
+        cost_case_one = ra;
     else
         cost_case_one = rb;
     if (rra > rrb)
         cost_case_two = rra;
     else
         cost_case_two = rrb;
-    if (cost_case_one <= cost_case_two)
+    if (ra == 1)
+        swap_a = 1;
+    else
+        swap_a = 0;
+    
+    if (rb == 1)
+        swap_b = 1;
+    else
+        swap_b = 0;
+    if (swap_a || swap_b)
+        cost_swap = 1;
+    if (cost_swap <= cost_case_one && cost_swap <= cost_case_two)
+        set_case_swap_cost(c, swap_a, swap_b);
+    else if (cost_case_one <= cost_case_two)
         set_case_one_cost(c, ra, rb);
     else
         set_case_two_cost(c, rra, rrb);
@@ -241,6 +294,25 @@ void execute_case_one_ab(t_stack *a, t_stack *b, t_cost *c)
     execute_instruction(a, b, "pb");
 }
 
+void execute_case_swap_ab(t_stack *a, t_stack *b, t_cost *c)
+{
+    if (c->combo_op)
+        printf("Using combo_op: %s\n", c->combo_op);  // Expected: "ss"
+    else
+        printf("Using dir_a: %s, dir_b: %s\n", c->dir_a, c->dir_b);
+    if (c->combo_op)
+        execute_instruction(a, b, c->combo_op); // "ss"
+    else
+    {
+        if (c->dir_a)
+            execute_instruction(a, b, c->dir_a); // "sa"
+        if (c->dir_b)
+            execute_instruction(a, b, c->dir_b); // "sb"
+    }
+    execute_instruction(a, b, "pb");
+}
+
+
 void execute_case_two_ab(t_stack *a, t_stack *b, t_cost *c)
 {
     int common;
@@ -342,26 +414,34 @@ void mechanical_turk(t_stack *a, t_stack *b)
         }
         if (cheapest.case_id == 1)
             execute_case_one_ab(a, b, &cheapest);
-        else
+        else if (cheapest.case_id == 2)
             execute_case_two_ab(a, b, &cheapest);
+        else
+            execute_case_swap_ab(a, b, &cheapest);
     }
     sort_three(a, b);
-    while (b->size > 0)
-    {
-        current = b->head;
-        cheapest.total_cost = INT_MAX;
-        while (current)
-        {
-            calculate_cost_ba(a, b, current, &current_cost);
-            if (current_cost.total_cost < cheapest.total_cost)
-                cheapest = current_cost;
-            current = current->next;
-        }
-        if (cheapest.case_id == 1)
-            execute_case_one_ba(a, b, &cheapest);
-        else
-            execute_case_two_ba(a, b, &cheapest);
-    }
-    final_align_a(a);
+    //while (b->size > 0)
+    //{
+    //    current = b->head;
+    //    cheapest.total_cost = INT_MAX;
+    //    while (current)
+    //    {
+    //        calculate_cost_ba(a, b, current, &current_cost);
+    //        if (current_cost.total_cost < cheapest.total_cost)
+    //            cheapest = current_cost;
+    //        current = current->next;
+    //    }
+    //    if (cheapest.case_id == 1)
+    //        execute_case_one_ba(a, b, &cheapest);
+    //    else
+    //        execute_case_two_ba(a, b, &cheapest);
+    //}
+    //final_align_a(a);
+    printf("\n");
+    printf("stack a:");
+    print_stack(a);
+    printf("\n");
+    printf("stack b:");
+    print_stack(b);
 }
 

@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/11 16:39:54 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/12 12:08:36 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,16 @@ typedef struct s_cost {
 	int     index_stack_a;    // Position in A
 	int     index_stack_b;    // Insertion position in B
 
-	int     cost_top_a;       // Number of ops for A (ra/rra)
-	int     cost_top_b;       // Number of ops for B (rb/rrb)
+	int     cost_top_a;       // Number of single ops for A
+	int     cost_top_b;       // Number of single ops for B
 
-	char   *dir_a;            // "ra" or "rra"
-	char   *dir_b;            // "rb" or "rrb"
+	char   *dir_a;            // "ra", "rra", "sa", or NULL
+	char   *dir_b;            // "rb", "rrb", "sb", or NULL
+	char   *combo_op;         // "rr", "rrr", "ss", or NULL
 
-	int     total_cost;       // Max(cost_top_a, cost_top_b) for aligned case
-	int     case_id;          // 1 = case_one (ra + rb), 2 = case_two (rra + rrb)
+	int     total_cost;       // Total instructions (combined ops count once)
+	int     case_id;          // 1 = rotate up, 2 = rotate down, 3 = swap
 } t_cost;
-
-
 
 //parsing functions
 void free_stack(t_stack *stack);

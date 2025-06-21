@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:23 by magebreh          #+#    #+#             */
-/*   Updated: 2025/05/29 16:05:42 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:23:49 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	pusha_to_b(t_stack *stack_a, t_stack *stack_b)
 	stack_a->head = current->next;
 	if (stack_a->head != NULL)
 		stack_a->head->prev = NULL;
+	else
+		stack_a->tail = NULL;
 	stack_a->size--;
 	current->next = stack_b->head;
 	current->prev = NULL;
@@ -91,6 +93,8 @@ void	pushb_to_a(t_stack *stack_a, t_stack *stack_b)
 	stack_b->head = current->next;
 	if (stack_b->head != NULL)
 		stack_b->head->prev = NULL;
+	else
+		stack_b->tail = NULL;
 	stack_b->size--;
 	current->next = stack_a->head;
 	current->prev = NULL;

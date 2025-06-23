@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 16:41:15 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:57:31 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	calculate_cost_ab(t_stack *a, t_stack *b, t_node *node, t_cost *c);
 void	calculate_four_costs(t_stack *a, t_stack *b, t_cost *c, int costs[4]);
 int	find_best_case(int costs[4]);
 int	get_node_index(t_stack *stack, t_node *target);
-void	set_cost_by_case(t_stack *a, t_stack *b, t_cost *c, int best_case, int cost);
 void	set_case_three_cost(t_cost *c, int ra_cost, int rrb_cost, int total);
 void	set_case_four_cost(t_cost *c, int rra_cost, int rb_cost, int total);
 

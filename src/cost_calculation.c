@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:53:26 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 16:26:49 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:11:05 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,52 @@ void	calculate_cost_ba(t_stack *a, t_stack *b, t_node *node, t_cost *c)
 {
 	int	costs[4];
 	int	best_case;
+	int	cost;
+	int	rra_cost;
+	int	rrb_cost;
 
 	c->target_node = node;
 	c->index_stack_b = get_node_index(b, node);
 	c->index_stack_a = find_place_in_a(a, node->value);
 	calculate_four_costs(a, b, c, costs);
 	best_case = find_best_case(costs);
-	set_cost_by_case(a, b, c, best_case, costs[best_case - 1]);
+	cost = costs[best_case - 1];
+	rra_cost = a->size - c->index_stack_a;
+	rrb_cost = b->size - c->index_stack_b;
+	if (best_case == 1)
+		set_case_one_cost(c, c->index_stack_a, c->index_stack_b);
+	else if (best_case == 2)
+		set_case_two_cost(c, rra_cost, rrb_cost);
+	else if (best_case == 3)
+		set_case_three_cost(c, c->index_stack_a, rrb_cost, cost);
+	else
+		set_case_four_cost(c, rra_cost, c->index_stack_b, cost);
 }
 
 void	calculate_cost_ab(t_stack *a, t_stack *b, t_node *node, t_cost *c)
 {
 	int	costs[4];
 	int	best_case;
+	int	cost;
+	int	rra_cost;
+	int	rrb_cost;
 
 	c->target_node = node;
 	c->index_stack_a = get_node_index(a, node);
 	c->index_stack_b = find_place_in_b(b, node->value);
 	calculate_four_costs(a, b, c, costs);
 	best_case = find_best_case(costs);
-	set_cost_by_case(a, b, c, best_case, costs[best_case - 1]);
+	cost = costs[best_case - 1];
+	rra_cost = a->size - c->index_stack_a;
+	rrb_cost = b->size - c->index_stack_b;
+	if (best_case == 1)
+		set_case_one_cost(c, c->index_stack_a, c->index_stack_b);
+	else if (best_case == 2)
+		set_case_two_cost(c, rra_cost, rrb_cost);
+	else if (best_case == 3)
+		set_case_three_cost(c, c->index_stack_a, rrb_cost, cost);
+	else
+		set_case_four_cost(c, rra_cost, c->index_stack_b, cost);
 }
 
 void	calculate_four_costs(t_stack *a, t_stack *b, t_cost *c, int costs[4])
@@ -86,16 +112,4 @@ int	get_node_index(t_stack *stack, t_node *target)
 		current = current->next;
 	}
 	return (index);
-}
-
-void	set_cost_by_case(t_stack *a, t_stack *b, t_cost *c, int best_case, int cost)
-{
-	if (best_case == 1)
-		set_case_one_cost(c, c->index_stack_a, c->index_stack_b);
-	else if (best_case == 2)
-		set_case_two_cost(c, a->size - c->index_stack_a, b->size - c->index_stack_b);
-	else if (best_case == 3)
-		set_case_three_cost(c, c->index_stack_a, b->size - c->index_stack_b, cost);
-	else
-		set_case_four_cost(c, a->size - c->index_stack_a, c->index_stack_b, cost);
 }

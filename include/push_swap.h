@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 16:57:31 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:22:42 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,10 @@ void	set_case_three_cost(t_cost *c, int ra_cost, int rrb_cost, int total);
 void	set_case_four_cost(t_cost *c, int rra_cost, int rb_cost, int total);
 
 // exec_case_ab.c
-void	execute_case_one_ab(t_stack *a, t_stack *b, t_cost *c);
-void	execute_case_two_ab(t_stack *a, t_stack *b, t_cost *c);
-void	execute_case_one_ba(t_stack *a, t_stack *b, t_cost *c);
-void	execute_case_two_ba(t_stack *a, t_stack *b, t_cost *c);
-void	execute_case_three_ab(t_stack *a, t_stack *b, t_cost *c);
-void	execute_case_four_ab(t_stack *a, t_stack *b, t_cost *c);
-void	execute_case_three_ba(t_stack *a, t_stack *b, t_cost *c);
-void	execute_case_four_ba(t_stack *a, t_stack *b, t_cost *c);
+void	execute_case_one(t_stack *a, t_stack *b, t_cost *c, char *push_op);
+void	execute_case_two(t_stack *a, t_stack *b, t_cost *c, char *push_op);
+void	execute_case_three(t_stack *a, t_stack *b, t_cost *c, char *push_op);
+void	execute_case_four(t_stack *a, t_stack *b, t_cost *c, char *push_op);
 
 // helper.c
 t_node	*get_node_at(t_stack *stack, int index);

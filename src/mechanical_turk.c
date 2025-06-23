@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 01:48:07 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 16:39:33 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:22:07 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,13 +145,13 @@ void push_cheapest_to_b(t_stack *a, t_stack *b)
         current = current->next;
     }
     if (cheapest.case_id == 1)
-        execute_case_one_ab(a, b, &cheapest);
+        execute_case_one(a, b, &cheapest, "pb");
     else if (cheapest.case_id == 2)
-        execute_case_two_ab(a, b, &cheapest);
+        execute_case_two(a, b, &cheapest, "pb");
     else if (cheapest.case_id == 3)
-        execute_case_three_ab(a, b, &cheapest);
+        execute_case_three(a, b, &cheapest, "pb");
     else
-        execute_case_four_ab(a, b, &cheapest);
+        execute_case_four(a, b, &cheapest, "pb");
 }
 
 void push_cheapest_to_a(t_stack *a, t_stack *b)
@@ -171,13 +171,13 @@ void push_cheapest_to_a(t_stack *a, t_stack *b)
         current = current->next;
     }
     if (cheapest.case_id == 1)
-        execute_case_one_ba(a, b, &cheapest);
+        execute_case_one(a, b, &cheapest, "pa");
     else if (cheapest.case_id == 2)
-        execute_case_two_ba(a, b, &cheapest);
+        execute_case_two(a, b, &cheapest, "pa");
     else if (cheapest.case_id == 3)
-        execute_case_three_ba(a, b, &cheapest);
+        execute_case_three(a, b, &cheapest, "pa");
     else
-        execute_case_four_ba(a, b, &cheapest);
+        execute_case_four(a, b, &cheapest, "pa");
 }
 
 void mechanical_turk(t_stack *a, t_stack *b)

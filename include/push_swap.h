@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 18:22:42 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:27:57 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ int	find_place_in_b(t_stack *b, int value);
 int	get_index_of_min(t_stack *b);
 int	get_index_of_max(t_stack *s);
 int	find_place_in_a(t_stack *a, int value);
-int	get_index_between_b(t_stack *b, int value);
-int	get_index_between_a(t_stack *a, int value);
+int	get_index_between(t_stack *stack, int value, char direction);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 01:48:07 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 18:22:07 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:27:11 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,42 +59,31 @@ void	set_case_four_cost(t_cost *c, int rra_cost, int rb_cost, int total)
 	c->case_id = 4;
 }
 
-int get_index_between_b(t_stack *b, int value)
+int get_index_between(t_stack *stack, int value, char direction)
 {
     t_node *current;
     int index;
 
-    current = b->head;
+    current = stack->head;
     index = 0;
 
     while (current && current->next)
     {
-        if (current->value > value && current->next->value < value)
-            return index + 1;
+        if (direction == 'b')
+        {
+            if (current->value > value && current->next->value < value)
+                return index + 1;
+        }
+        else if (direction == 'a')
+        {
+            if (current->value < value && current->next->value > value)
+                return index + 1;
+        }
         current = current->next;
         index++;
     }
     return 0;
 }
-
-int get_index_between_a(t_stack *a, int value)
-{
-    t_node *current;
-    int index;
-
-    current = a->head;
-    index = 0;
-
-    while (current && current->next)
-    {
-        if (current->value < value && current->next->value > value)
-            return index + 1;
-        current = current->next;
-        index++;
-    }
-    return 0;
-}
-
 
 void seed_stack_b(t_stack *a, t_stack *b)
 {

@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 14:40:14 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 16:15:45 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:29:14 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	find_place_in_b(t_stack *b, int value)
 		return (max_i);
 	if (min_node && value < min_node->value)
 		return (min_i + 1);
-	return (get_index_between_b(b, value));
+	return (get_index_between(b, value, 'b'));
 }
 
 int	get_index_of_min(t_stack *b)
@@ -108,5 +108,5 @@ int	find_place_in_a(t_stack *a, int value)
 		return (min_i);
 	if (value > max_node->value)
 		return (max_i + 1);
-	return (get_index_between_a(a, value));
+	return (get_index_between(a, value, 'a'));
 }

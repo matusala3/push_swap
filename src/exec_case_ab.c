@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 16:04:25 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 18:21:49 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:33:43 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,29 @@ void	execute_case_four(t_stack *a, t_stack *b, t_cost *c, char *push_op)
 	while (c->cost_top_b-- > 0)
 		execute_instruction(a, b, "rb");
 	execute_instruction(a, b, push_op);
+}
+
+int	get_index_between(t_stack *stack, int value, char direction)
+{
+	t_node	*current;
+	int		index;
+
+	current = stack->head;
+	index = 0;
+	while (current && current->next)
+	{
+		if (direction == 'b')
+		{
+			if (current->value > value && current->next->value < value)
+				return (index + 1);
+		}
+		else if (direction == 'a')
+		{
+			if (current->value < value && current->next->value > value)
+				return (index + 1);
+		}
+		current = current->next;
+		index++;
+	}
+	return (0);
 }

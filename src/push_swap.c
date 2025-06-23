@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:29 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/11 17:07:47 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/23 14:27:10 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,48 +61,28 @@ bool	parse_input(char **argv, t_stack *stack_a)
 	return (true);
 }
 
-void sort_strategy(t_stack *stack_a, t_stack *stack_b)
+void	sort_strategy(t_stack *stack_a, t_stack *stack_b)
 {
 	if (is_sorted(stack_a))
 		return ;
 	if (stack_a->size <= 5)
 		small_sort(stack_a, stack_b);
-	 else if (stack_a->size <= 500)
-	 	mechanical_turk(stack_a, stack_b);
-	// else
-	// 	radix_sort(stack_a, stack_b);
+	else if (stack_a->size <= 500)
+		mechanical_turk(stack_a, stack_b);
 }
 
-bool is_sorted(t_stack *stack)
+bool	is_sorted(t_stack *stack)
 {
-	t_node *current;
+	t_node	*current;
 
 	if (stack->size < 2)
-		return true;
+		return (true);
 	current = stack->head;
 	while (current && current->next)
 	{
 		if (current->value > current->next->value)
-			return false;
+			return (false);
 		current = current->next;
 	}
-	return true;
-}
-
-void print_stack(t_stack *stack)
-{
-	int size;
-	t_node *current;
-
-	size = stack->size;
-	current = stack->head;
-	if(!size)
-		return ;
-	while (size)
-	{
-		printf("%d ", current->value);
-		current = current->next;
-		size--;
-	}
-	
+	return (true);
 }

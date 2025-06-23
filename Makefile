@@ -6,7 +6,7 @@
 #    By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 01:14:35 by magebreh          #+#    #+#              #
-#    Updated: 2025/06/09 10:35:55 by magebreh         ###   ########.fr        #
+#    Updated: 2025/06/23 16:33:27 by magebreh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRC = src/check_duplicate.c \
 	  src/moves.c \
 	  src/parsing_utils.c \
 	  src/push_swap.c \
-	  src/radix_sort.c \
+	  src/cost_calculation.c \
+	  src/exec_case_ab.c \
+	  src/helper.c \
 	  src/small_sort.c \
 	  src/stack_op.c \
 

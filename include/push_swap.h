@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 14:25:37 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:41:15 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,34 @@ int		find_place_in_b(t_stack *b, int value);
 int		get_node_index(t_stack *stack, t_node *target);
 void	seed_stack_b(t_stack *a, t_stack *b);
 int		find_place_in_a(t_stack *a, int value);
+
+// cost_calculation.c
+void	calculate_cost_ba(t_stack *a, t_stack *b, t_node *node, t_cost *c);
+void	calculate_cost_ab(t_stack *a, t_stack *b, t_node *node, t_cost *c);
+void	calculate_four_costs(t_stack *a, t_stack *b, t_cost *c, int costs[4]);
+int	find_best_case(int costs[4]);
+int	get_node_index(t_stack *stack, t_node *target);
+void	set_cost_by_case(t_stack *a, t_stack *b, t_cost *c, int best_case, int cost);
+void	set_case_three_cost(t_cost *c, int ra_cost, int rrb_cost, int total);
+void	set_case_four_cost(t_cost *c, int rra_cost, int rb_cost, int total);
+
+// exec_case_ab.c
+void	execute_case_one_ab(t_stack *a, t_stack *b, t_cost *c);
+void	execute_case_two_ab(t_stack *a, t_stack *b, t_cost *c);
+void	execute_case_one_ba(t_stack *a, t_stack *b, t_cost *c);
+void	execute_case_two_ba(t_stack *a, t_stack *b, t_cost *c);
+void	execute_case_three_ab(t_stack *a, t_stack *b, t_cost *c);
+void	execute_case_four_ab(t_stack *a, t_stack *b, t_cost *c);
+void	execute_case_three_ba(t_stack *a, t_stack *b, t_cost *c);
+void	execute_case_four_ba(t_stack *a, t_stack *b, t_cost *c);
+
+// helper.c
+t_node	*get_node_at(t_stack *stack, int index);
+int	find_place_in_b(t_stack *b, int value);
+int	get_index_of_min(t_stack *b);
+int	get_index_of_max(t_stack *s);
+int	find_place_in_a(t_stack *a, int value);
+int	get_index_between_b(t_stack *b, int value);
+int	get_index_between_a(t_stack *a, int value);
 
 #endif

@@ -5,3 +5,4 @@ push_swap
 *.o
 *.dSYM
 push_swap.h.gch
+checker_linux

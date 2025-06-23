@@ -6,11 +6,12 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 01:48:07 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 16:29:01 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:39:33 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
 
 void	set_case_one_cost(t_cost *c, int a_cost, int b_cost)
 {

@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:47 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 18:50:08 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/24 18:59:18 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,9 @@ bool	check_duplicates(t_stack *stack_a)
 	if (stack_a->size < 2)
 		return (false);
 	linkedlist_copy = copy_stack_to_array(*stack_a, stack_a->size);
-	if(!linkedlist_copy)
+	if (!linkedlist_copy)
 		return (false);
-	if (size < 15 && size > 2)
-		quick_sort(linkedlist_copy, 0, size - 1);
-	else if (size < 250 && size > 15)
+	if (size < 250 && size > 2)
 		insertion_sort(linkedlist_copy, size);
 	else
 		heap_sort(linkedlist_copy, size);

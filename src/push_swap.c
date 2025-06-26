@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:29 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 14:27:10 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/26 13:54:09 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	sort_strategy(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	if (stack_a->size <= 5)
 		small_sort(stack_a, stack_b);
-	else if (stack_a->size <= 500)
+	else
 		mechanical_turk(stack_a, stack_b);
 }
 
@@ -83,6 +83,25 @@ bool	is_sorted(t_stack *stack)
 		if (current->value > current->next->value)
 			return (false);
 		current = current->next;
+	}
+	return (true);
+}
+
+bool	process_argv_entry(char **splitted_arg, t_stack *stack_a)
+{
+	int		i;
+	int		val;
+	bool	res;
+
+	i = 0;
+	while (splitted_arg[i])
+	{
+		if (!safe_atoi(splitted_arg[i], &val))
+			return (false);
+		i++;
+		res = stack_append(stack_a, val);
+		if (!res)
+			return (false);
 	}
 	return (true);
 }

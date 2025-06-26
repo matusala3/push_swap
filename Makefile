@@ -6,11 +6,12 @@
 #    By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 01:14:35 by magebreh          #+#    #+#              #
-#    Updated: 2025/06/23 18:52:28 by magebreh         ###   ########.fr        #
+#    Updated: 2025/06/26 16:29:30 by magebreh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
+BONUS_NAME = checker
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinclude
 AR = ar rcs
@@ -28,26 +29,56 @@ SRC = src/check_duplicate.c \
 	  src/small_sort.c \
 	  src/stack_op.c \
 
-OBJ = $(SRC:.c=.o)
+BONUS = bonus/checker_bonus.c \
+		get_next_line/get_next_line.c \
+		get_next_line/get_next_line_utils.c \
+
+
+OBJ_DIR = obj
+
+OBJ := $(SRC:src/%.c=$(OBJ_DIR)/%.o)
+BONUS_OBJ := $(BONUS:bonus/%.c=$(OBJ_DIR)/%.o)
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(LIBFT) $(NAME)
 
+bonus: $(LIBFT) $(BONUS_NAME)
+
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -s -C $(LIBFT_DIR)
+	@echo "Libft compiled."
+
+$(OBJ_DIR)/%.o: src/%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: bonus/%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: get_next_line/%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_DIR) -lft -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_DIR) -lft -o $(NAME)
+	@echo "Executable $(NAME) created."
+
+$(BONUS_NAME): $(BONUS_OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $(BONUS_OBJ) -L$(LIBFT_DIR) -lft -o $(BONUS_NAME)
+	@echo "Executable $(BONUS_NAME) created."
 
 clean:
-	$(RM) $(OBJ)
-	$(MAKE) -C $(LIBFT_DIR) clean
-	
+	@$(RM) $(OBJ) $(BONUS_OBJ)	
+	@$(MAKE) -s -C $(LIBFT_DIR) clean
+	@echo "Object files cleaned."
+
 fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(RM) $(NAME) $(BONUS_NAME)
+	@$(MAKE) -s -C $(LIBFT_DIR) fclean
+	@echo "All files cleaned."
 
 re: fclean all
 

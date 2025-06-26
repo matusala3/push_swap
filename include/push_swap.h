@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:31:13 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/23 18:44:23 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:14:34 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <stdlib.h>
-# include <stdbool.h>
 # include "../libft/libft.h"
 
 typedef struct s_node {
@@ -53,6 +51,7 @@ bool	safe_atoi(const char *str, int *out);
 bool	stack_append(t_stack *stack_a, int val);
 bool	parse_input(char **argv, t_stack *stack_a);
 bool	process_argv_entry(char **splitted_arg, t_stack *stack_a);
+bool	parse_integer_safe(const char *str, int start_pos, int sign, int *out);
 
 //checking duplication with sorting
 void	quick_sort(int *arr, int low, int high);

@@ -6,7 +6,7 @@
 #    By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 01:14:35 by magebreh          #+#    #+#              #
-#    Updated: 2025/06/26 16:29:30 by magebreh         ###   ########.fr        #
+#    Updated: 2025/06/26 17:10:31 by magebreh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,15 +29,19 @@ SRC = src/check_duplicate.c \
 	  src/small_sort.c \
 	  src/stack_op.c \
 
-BONUS = bonus/checker_bonus.c \
-		get_next_line/get_next_line.c \
-		get_next_line/get_next_line_utils.c \
+BONUS_SRC = bonus/checker_bonus.c \
+			bonus/checker_parsing.c \
+			bonus/checker_duplicates.c \
+			bonus/checker_operations.c \
+			bonus/checker_moves.c \
 
+GNL_SRC = get_next_line/get_next_line.c \
+		  get_next_line/get_next_line_utils.c
 
 OBJ_DIR = obj
 
 OBJ := $(SRC:src/%.c=$(OBJ_DIR)/%.o)
-BONUS_OBJ := $(BONUS:bonus/%.c=$(OBJ_DIR)/%.o)
+BONUS_OBJ := $(BONUS_SRC:bonus/%.c=$(OBJ_DIR)/%.o) $(GNL_SRC:get_next_line/%.c=$(OBJ_DIR)/%.o)
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a

@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:00:00 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/26 17:08:29 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/26 19:33:52 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,4 @@ void	pushb_to_a(t_stack *stack_a, t_stack *stack_b)
 	if (stack_a->size == 0)
 		stack_a->tail = current;
 	stack_a->size++;
-} 
+}

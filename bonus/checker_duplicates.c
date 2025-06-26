@@ -6,7 +6,7 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:00:00 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/26 17:08:17 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/26 19:31:35 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,6 @@ void	heapify(int *arr, int size, int root)
 	}
 }
 
-void	heap_sort(int *arr, int size)
-{
-	int	i;
-
-	i = size / 2 - 1;
-	while (i >= 0)
-	{
-		heapify(arr, size, i);
-		i--;
-	}
-	i = size - 1;
-	while (i > 0)
-	{
-		swap_int(&arr[0], &arr[i]);
-		heapify(arr, i, 0);
-		i--;
-	}
-}
-
 int	*copy_stack_to_array(t_stack stack_a, int size)
 {
 	t_node	*current;
@@ -117,10 +98,7 @@ bool	check_duplicates(t_stack *stack_a)
 	linkedlist_copy = copy_stack_to_array(*stack_a, stack_a->size);
 	if (!linkedlist_copy)
 		return (false);
-	if (size < 250 && size > 2)
-		insertion_sort(linkedlist_copy, size);
-	else
-		heap_sort(linkedlist_copy, size);
+	insertion_sort(linkedlist_copy, size);
 	while (size > 1)
 	{
 		if (linkedlist_copy[size - 1] == linkedlist_copy[size - 2])
@@ -132,4 +110,4 @@ bool	check_duplicates(t_stack *stack_a)
 	}
 	free(linkedlist_copy);
 	return (false);
-} 
+}

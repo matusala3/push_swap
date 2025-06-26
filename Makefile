@@ -6,7 +6,7 @@
 #    By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/30 01:14:35 by magebreh          #+#    #+#              #
-#    Updated: 2025/06/26 17:10:31 by magebreh         ###   ########.fr        #
+#    Updated: 2025/06/26 19:51:09 by magebreh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC = src/check_duplicate.c \
 
 BONUS_SRC = bonus/checker_bonus.c \
 			bonus/checker_parsing.c \
+			bonus/checker_parsing_utils.c \
 			bonus/checker_duplicates.c \
 			bonus/checker_operations.c \
 			bonus/checker_moves.c \

@@ -6,26 +6,14 @@
 /*   By: magebreh <magebreh@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 17:00:00 by magebreh          #+#    #+#             */
-/*   Updated: 2025/06/26 17:13:05 by magebreh         ###   ########.fr       */
+/*   Updated: 2025/06/26 19:52:50 by magebreh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/checker_bonus.h"
 
-void	trim_newline(char *str)
-{
-	int	len;
-
-	if (!str)
-		return ;
-	len = ft_strlen(str);
-	if (len > 0 && str[len - 1] == '\n')
-		str[len - 1] = '\0';
-}
-
 int	execute_instruction_silent(t_stack *a, t_stack *b, char *op)
 {
-	trim_newline(op);
 	if (!ft_strcmp(op, "sa"))
 		swap_stack(a);
 	else if (!ft_strcmp(op, "sb"))
@@ -80,19 +68,3 @@ int	ft_strcmp(char *s1, char *s2)
 		i++;
 	return (s1[i] - s2[i]);
 }
-
-bool	is_sorted(t_stack *stack)
-{
-	t_node	*current;
-
-	if (stack->size < 2)
-		return (true);
-	current = stack->head;
-	while (current && current->next)
-	{
-		if (current->value > current->next->value)
-			return (false);
-		current = current->next;
-	}
-	return (true);
-} 
